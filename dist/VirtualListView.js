@@ -36,6 +36,7 @@
  *    position all in the same frame if possible.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.VirtualListView = void 0;
 var tslib_1 = require("tslib");
 var _ = require("lodash");
 var react_1 = require("react");

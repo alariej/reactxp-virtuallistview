@@ -8,6 +8,7 @@
  * container for a single list item.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.VirtualListCell = void 0;
 var tslib_1 = require("tslib");
 var react_1 = require("react");
 var RX = require("reactxp");
@@ -244,7 +245,7 @@ var VirtualListCell = /** @class */ (function (_super) {
     };
     VirtualListCell.prototype.render = function () {
         var overflow = this.props.showOverflow ? _styles.overflowVisible : _styles.overflowHidden;
-        return (RX.createElement(RX.Animated.View, { style: [_styles.cellView, overflow, this._animatedStylePosition, this._staticStylePosition], ref: this._ref, tabIndex: this.props.tabIndex, onLayout: this.props.onLayout ? this._onLayout : undefined, onFocus: this.props.onItemFocused ? this._onFocus : undefined, onBlur: this.props.onItemFocused ? this._onBlur : undefined, onPress: this.props.onItemSelected ? this._onPress : undefined, onKeyPress: this.props.onKeyPress || this.props.onItemSelected ? this._onKeyPress : undefined, disableTouchOpacityAnimation: this.props.item ? this.props.item.disableTouchOpacityAnimation : undefined },
+        return (RX.createElement(RX.Animated.View, { style: [_styles.cellView, overflow, this._animatedStylePosition, this._staticStylePosition], ref: this._ref, tabIndex: this.props.tabIndex, onLayout: this.props.onLayout ? this._onLayout : undefined, onFocus: this.props.onItemFocused ? this._onFocus : undefined, onBlur: this.props.onItemFocused ? this._onBlur : undefined, onPress: this.props.onItemSelected ? this._onPress : undefined, onKeyPress: this.props.onKeyPress || typeof (this.props.onItemSelected) === 'function' ? this._onKeyPress : undefined, disableTouchOpacityAnimation: this.props.item ? this.props.item.disableTouchOpacityAnimation : undefined },
             RX.createElement(VirtualListCell.StaticRenderer, { shouldUpdate: this.props.shouldUpdate, isFocused: this.props.isFocused, isSelected: this.props.isSelected, item: this.props.item, renderItem: this.props.renderItem })));
     };
     // Helper class used to render child elements. If we know that none of the children changed - we would like to skip

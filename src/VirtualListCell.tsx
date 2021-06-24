@@ -339,7 +339,7 @@ export class VirtualListCell<ItemInfo extends VirtualListCellInfo> extends RX.Co
                 onFocus={ this.props.onItemFocused ? this._onFocus : undefined }
                 onBlur={ this.props.onItemFocused ? this._onBlur : undefined }
                 onPress={ this.props.onItemSelected ? this._onPress : undefined }
-                onKeyPress={ this.props.onKeyPress || this.props.onItemSelected ? this._onKeyPress : undefined }
+                onKeyPress={ this.props.onKeyPress || typeof(this.props.onItemSelected) === 'function' ? this._onKeyPress : undefined }
                 disableTouchOpacityAnimation={ this.props.item ? this.props.item.disableTouchOpacityAnimation : undefined }
             >
                 <VirtualListCell.StaticRenderer
