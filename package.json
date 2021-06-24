@@ -28,8 +28,6 @@
     "eslint-config-skype": "1.9.2",
     "eslint-plugin-import": "2.23.4",
     "eslint-plugin-react": "7.24.0",
-    "react": "16.13.1",
-    "reactxp": "github:alariej/reactxp",
     "typescript": "4.3.4"
   },
   "homepage": "https://microsoft.github.io/reactxp/docs/extensions/virtuallistview.html",
