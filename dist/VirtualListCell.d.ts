@@ -25,11 +25,9 @@ export interface VirtualListCellProps<ItemInfo extends VirtualListCellInfo> exte
     renderItem: (details: VirtualListCellRenderDetails<ItemInfo>) => JSX.Element | JSX.Element[];
     onKeyPress: (ev: RX.Types.KeyboardEvent) => void;
     itemKey: string | undefined;
-    left: number;
     top: number;
     width: number;
     isVisible: boolean;
-    useNativeDriver?: boolean;
     showOverflow?: boolean;
     isScreenReaderModeEnabled?: boolean;
     isActive: boolean;
@@ -58,7 +56,7 @@ export declare class VirtualListCell<ItemInfo extends VirtualListCellInfo> exten
     componentWillUnmount(): void;
     setVisibility(isVisible: boolean): void;
     isVisible(): boolean;
-    setTop(top: number, animate?: boolean, animationDelay?: number, animationOvershoot?: number): void;
+    setTop(top: number, animate?: boolean): void;
     cancelPendingAnimation(): void;
     setItemKey(key: string | undefined): void;
     getTop(): number;

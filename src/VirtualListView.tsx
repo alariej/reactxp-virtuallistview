@@ -1201,7 +1201,6 @@ export class VirtualListView<ItemInfo extends VirtualListViewItemInfo>
                     onAnimateStartStop={ this._onAnimateStartStopItem }
                     itemKey={ cell.item ? cell.item.key : undefined }
                     item={ cell.item }
-                    left={ 0 }
                     width={ this._contentWidth }
                     top={ cell.cellInfo.top }
                     isVisible={ cell.cellInfo.isVisible }

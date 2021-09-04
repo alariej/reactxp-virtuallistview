@@ -25,8 +25,6 @@ var _styles = {
     }),
 };
 var _isNativeMacOS = RX.Platform.getType() === 'macos';
-var _skypeEaseInAnimationCurve = RX.Animated.Easing.CubicBezier(1, 0, 0.78, 1);
-var _skypeEaseOutAnimationCurve = RX.Animated.Easing.CubicBezier(0.33, 0, 0, 1);
 var _keyCodeEnter = 13;
 var _keyCodeSpace = 32;
 var _keyCodeReturn = 3;
@@ -95,14 +93,12 @@ var VirtualListCell = /** @class */ (function (_super) {
         }
         _this._staticStylePosition = RX.Styles.createViewStyle({
             width: _this.props.width,
-            left: _this.props.left || 0,
         }, false);
         return _this;
     }
     VirtualListCell.prototype.UNSAFE_componentWillReceiveProps = function (nextProps) {
         // If it's inactive, it had better be invisible.
         assert_1.default(nextProps.isActive || !nextProps.isVisible);
-        assert_1.default(nextProps.useNativeDriver === this.props.useNativeDriver);
         // All callbacks should be prebound to optimize performance.
         assert_1.default(this.props.onLayout === nextProps.onLayout, 'onLayout callback changed');
         assert_1.default(this.props.onItemSelected === nextProps.onItemSelected, 'onItemSelected callback changed');
@@ -157,11 +153,9 @@ var VirtualListCell = /** @class */ (function (_super) {
     VirtualListCell.prototype.isVisible = function () {
         return this._isVisible;
     };
-    VirtualListCell.prototype.setTop = function (top, animate, animationDelay, animationOvershoot) {
+    VirtualListCell.prototype.setTop = function (top, animate) {
         var _this = this;
         if (animate === void 0) { animate = false; }
-        if (animationDelay === void 0) { animationDelay = 0; }
-        if (animationOvershoot === void 0) { animationOvershoot = 0; }
         if (top !== this._top) {
             this._top = top;
             if (this._isVisible) {
@@ -181,32 +175,12 @@ var VirtualListCell = /** @class */ (function (_super) {
                     isReplacingPendingAnimation = true;
                 }
                 if (animate) {
-                    if (animationOvershoot !== 0) {
-                        this._topAnimation = RX.Animated.sequence([
-                            RX.Animated.timing(this._topValue, {
-                                toValue: top + animationOvershoot,
-                                duration: 200,
-                                delay: animationDelay,
-                                easing: _skypeEaseInAnimationCurve,
-                                useNativeDriver: true,
-                            }),
-                            RX.Animated.timing(this._topValue, {
-                                toValue: top,
-                                duration: 400,
-                                easing: _skypeEaseOutAnimationCurve,
-                                useNativeDriver: true,
-                            }),
-                        ]);
-                    }
-                    else {
-                        this._topAnimation = RX.Animated.timing(this._topValue, {
-                            toValue: top,
-                            duration: 200,
-                            delay: animationDelay,
-                            easing: RX.Animated.Easing.InOut(),
-                            useNativeDriver: true,
-                        });
-                    }
+                    this._topAnimation = RX.Animated.timing(this._topValue, {
+                        toValue: top,
+                        duration: 200,
+                        easing: RX.Animated.Easing.InOut(),
+                        useNativeDriver: true,
+                    });
                     if (!isReplacingPendingAnimation && this.props.onAnimateStartStop && this._itemKey) {
                         this.props.onAnimateStartStop(this._itemKey, true);
                     }

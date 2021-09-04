@@ -14,7 +14,6 @@ import assert from './assert';
 
 export interface VirtualListCellInfo {
     key: string;
-
     disableTouchOpacityAnimation?: boolean;
 }
 
@@ -35,11 +34,9 @@ export interface VirtualListCellProps<ItemInfo extends VirtualListCellInfo> exte
 
     // Props that do not impact render (position is set by animated style).
     itemKey: string | undefined;
-    left: number;
     top: number;
     width: number;
     isVisible: boolean;
-    useNativeDriver?: boolean;
     showOverflow?: boolean;
 
     // We need to disable animation and the native animation driver in screen reader mode.
@@ -75,8 +72,6 @@ const _styles = {
 };
 
 const _isNativeMacOS = RX.Platform.getType() === 'macos';
-const _skypeEaseInAnimationCurve = RX.Animated.Easing.CubicBezier(1, 0, 0.78, 1);
-const _skypeEaseOutAnimationCurve = RX.Animated.Easing.CubicBezier(0.33, 0, 0, 1);
 const _keyCodeEnter = 13;
 const _keyCodeSpace = 32;
 const _keyCodeReturn = 3;
@@ -160,15 +155,12 @@ export class VirtualListCell<ItemInfo extends VirtualListCellInfo> extends RX.Co
 
         this._staticStylePosition = RX.Styles.createViewStyle({
             width: this.props.width,
-            left: this.props.left || 0,
         }, false);
     }
 
     UNSAFE_componentWillReceiveProps(nextProps: VirtualListCellProps<ItemInfo>) {
         // If it's inactive, it had better be invisible.
         assert(nextProps.isActive || !nextProps.isVisible);
-
-        assert(nextProps.useNativeDriver === this.props.useNativeDriver);
 
         // All callbacks should be prebound to optimize performance.
         assert(this.props.onLayout === nextProps.onLayout, 'onLayout callback changed');
@@ -237,7 +229,7 @@ export class VirtualListCell<ItemInfo extends VirtualListCellInfo> extends RX.Co
         return this._isVisible;
     }
 
-    setTop(top: number, animate = false, animationDelay = 0, animationOvershoot = 0) {
+    setTop(top: number, animate = false) {
         if (top !== this._top) {
             this._top = top;
 
@@ -261,31 +253,13 @@ export class VirtualListCell<ItemInfo extends VirtualListCellInfo> extends RX.Co
                 }
 
                 if (animate) {
-                    if (animationOvershoot !== 0) {
-                        this._topAnimation = RX.Animated.sequence([
-                            RX.Animated.timing(this._topValue, {
-                                toValue: top + animationOvershoot,
-                                duration: 200,
-                                delay: animationDelay,
-                                easing: _skypeEaseInAnimationCurve,
-                                useNativeDriver: true,
-                            }),
-                            RX.Animated.timing(this._topValue, {
-                                toValue: top,
-                                duration: 400,
-                                easing: _skypeEaseOutAnimationCurve,
-                                useNativeDriver: true,
-                            }),
-                        ]);
-                    } else {
-                        this._topAnimation = RX.Animated.timing(this._topValue, {
-                            toValue: top,
-                            duration: 200,
-                            delay: animationDelay,
-                            easing: RX.Animated.Easing.InOut(),
-                            useNativeDriver: true,
-                        });
-                    }
+
+                    this._topAnimation = RX.Animated.timing(this._topValue, {
+                        toValue: top,
+                        duration: 200,
+                        easing: RX.Animated.Easing.InOut(),
+                        useNativeDriver: true,
+                    });
 
                     if (!isReplacingPendingAnimation && this.props.onAnimateStartStop && this._itemKey) {
                         this.props.onAnimateStartStop(this._itemKey, true);
