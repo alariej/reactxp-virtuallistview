@@ -77,7 +77,7 @@ var _accessibilityVirtualKeyPrefix = 'ac_';
 var _keyCodeUpArrow = _isWeb ? 38 : 19;
 var _keyCodeDownArrow = _isWeb ? 40 : 20;
 var VirtualListView = /** @class */ (function (_super) {
-    tslib_1.__extends(VirtualListView, _super);
+    (0, tslib_1.__extends)(VirtualListView, _super);
     function VirtualListView(props) {
         var _this = _super.call(this, props) || this;
         _this._lastScrollTop = 0;
@@ -94,7 +94,7 @@ var VirtualListView = /** @class */ (function (_super) {
         });
         // A dictionary of items that maps item keys to item indexes.
         _this._itemMap = new Map();
-        _this._scrollViewRef = react_1.createRef();
+        _this._scrollViewRef = (0, react_1.createRef)();
         // When we need to actually re-render, mark this until it's resolved
         _this._isRenderDirty = false;
         // Number of pending item animations. We defer some actions while animations are pending.
@@ -233,11 +233,11 @@ var VirtualListView = /** @class */ (function (_super) {
             if (_this._isMounted) {
                 var hasAnimation = _this._pendingAnimations.has(itemKey);
                 if (animateStart) {
-                    assert_1.default(!hasAnimation, 'unexpected animation start');
+                    (0, assert_1.default)(!hasAnimation, 'unexpected animation start');
                     _this._pendingAnimations.add(itemKey);
                 }
                 else {
-                    assert_1.default(hasAnimation, 'unexpected animation complete');
+                    (0, assert_1.default)(hasAnimation, 'unexpected animation complete');
                     _this._pendingAnimations.delete(itemKey);
                     // We defer this because there are cases where we can cancel animations
                     // because we've received new props. We don't want to re-enter the
@@ -417,7 +417,7 @@ var VirtualListView = /** @class */ (function (_super) {
             itemIndex++;
             // Make sure there are no duplicate keys.
             if (newItemMap.has(item.key)) {
-                assert_1.default(false, 'Found a duplicate key: ' + item.key);
+                (0, assert_1.default)(false, 'Found a duplicate key: ' + item.key);
                 if (props.logInfo) {
                     props.logInfo('Item with key ' + item.key + ' is duplicated at positions ' + itemIndex +
                         ' and ' + newItemMap.get(item.key));
@@ -656,7 +656,7 @@ var VirtualListView = /** @class */ (function (_super) {
             var item = props.itemList[itemIndex];
             var isHeightKnown = _this._isItemHeightKnown(item);
             var itemHeight = _this._getHeightOfItem(item);
-            assert_1.default(itemHeight > 0, 'list items should always have non-zero height');
+            (0, assert_1.default)(itemHeight > 0, 'list items should always have non-zero height');
             _this._itemsInRenderBlock++;
             _this._heightOfRenderBlock += itemHeight;
             var yPlacement;
@@ -804,8 +804,8 @@ var VirtualListView = /** @class */ (function (_super) {
             newCell.isVisible = isVisible;
             newCell.top = top;
             newCell.shouldUpdate = true;
-            assert_1.default(newCell.isHeightConstant === isHeightConstant, 'isHeightConstant assumed to not change');
-            assert_1.default(newCell.itemTemplate === itemTemplate, 'itemTemplate assumed to not change');
+            (0, assert_1.default)(newCell.isHeightConstant === isHeightConstant, 'isHeightConstant assumed to not change');
+            (0, assert_1.default)(newCell.itemTemplate === itemTemplate, 'itemTemplate assumed to not change');
             var mountedCell = newCell.cellRef.current;
             if (mountedCell) {
                 mountedCell.setVisibility(isVisible);
@@ -816,7 +816,7 @@ var VirtualListView = /** @class */ (function (_super) {
         else {
             // We didn't find a recycled cell that we could use. Allocate a new one.
             newCell = {
-                cellRef: react_1.createRef(),
+                cellRef: (0, react_1.createRef)(),
                 virtualKey: _virtualKeyPrefix + VirtualListView._nextCellKey,
                 itemTemplate: itemTemplate,
                 isHeightConstant: isHeightConstant,
@@ -858,7 +858,7 @@ var VirtualListView = /** @class */ (function (_super) {
     VirtualListView.prototype._setCellTopAndVisibility = function (itemKey, isVisibile, top, animateIfPreviouslyVisible) {
         var cellInfo = this._activeCells.get(itemKey);
         if (!cellInfo) {
-            assert_1.default(false, 'Missing cell');
+            (0, assert_1.default)(false, 'Missing cell');
             return;
         }
         // Disable animation for Android when screen reader is on.
@@ -890,7 +890,7 @@ var VirtualListView = /** @class */ (function (_super) {
             var itemIndex = this._itemsAboveRenderBlock + i;
             var item = this.props.itemList[itemIndex];
             var virtualCellInfo = this._activeCells.get(item.key);
-            assert_1.default(virtualCellInfo, 'Active Cell not found for key ' + item.key + ', index=' + i);
+            (0, assert_1.default)(virtualCellInfo, 'Active Cell not found for key ' + item.key + ', index=' + i);
             cellList.push({
                 cellInfo: virtualCellInfo,
                 item: item,
@@ -902,7 +902,7 @@ var VirtualListView = /** @class */ (function (_super) {
         }
         for (var _i = 0, _a = this._recycledCells; _i < _a.length; _i++) {
             var virtualCellInfo = _a[_i];
-            assert_1.default(virtualCellInfo, 'Recycled Cells array contains a null/undefined object');
+            (0, assert_1.default)(virtualCellInfo, 'Recycled Cells array contains a null/undefined object');
             cellList.push({
                 cellInfo: virtualCellInfo,
                 item: undefined,
@@ -1024,7 +1024,7 @@ var VirtualListView = /** @class */ (function (_super) {
         if (index === -1 && retry && this.state.lastFocusedItemKey !== undefined) {
             index = this._itemMap.get(this.state.lastFocusedItemKey);
             if (index === undefined) {
-                assert_1.default(false, 'Something went wrong in finding last focused item');
+                (0, assert_1.default)(false, 'Something went wrong in finding last focused item');
                 return false;
             }
             var height = index === 0 ? 0 : this._calcHeightOfItems(this.props, 0, index - 1);

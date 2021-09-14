@@ -29,13 +29,13 @@ var _keyCodeEnter = 13;
 var _keyCodeSpace = 32;
 var _keyCodeReturn = 3;
 var VirtualListCell = /** @class */ (function (_super) {
-    tslib_1.__extends(VirtualListCell, _super);
+    (0, tslib_1.__extends)(VirtualListCell, _super);
     function VirtualListCell(props) {
         var _this = _super.call(this, props) || this;
         _this._isVisible = false;
         _this._top = VirtualListCell._hiddenTopValue;
         _this._calculatedHeight = 0;
-        _this._ref = react_1.createRef();
+        _this._ref = (0, react_1.createRef)();
         _this._onKeyPress = function (e) {
             var isSelectItemKeyPress = e.keyCode === _keyCodeEnter ||
                 e.keyCode === _keyCodeSpace ||
@@ -98,16 +98,16 @@ var VirtualListCell = /** @class */ (function (_super) {
     }
     VirtualListCell.prototype.UNSAFE_componentWillReceiveProps = function (nextProps) {
         // If it's inactive, it had better be invisible.
-        assert_1.default(nextProps.isActive || !nextProps.isVisible);
+        (0, assert_1.default)(nextProps.isActive || !nextProps.isVisible);
         // All callbacks should be prebound to optimize performance.
-        assert_1.default(this.props.onLayout === nextProps.onLayout, 'onLayout callback changed');
-        assert_1.default(this.props.onItemSelected === nextProps.onItemSelected, 'onItemSelected callback changed');
-        assert_1.default(this.props.onItemFocused === nextProps.onItemFocused, 'onItemFocused callback changed');
-        assert_1.default(this.props.onAnimateStartStop === nextProps.onAnimateStartStop, 'onAnimateStartStop callback changed');
-        assert_1.default(this.props.renderItem === nextProps.renderItem, 'renderItem callback changed');
+        (0, assert_1.default)(this.props.onLayout === nextProps.onLayout, 'onLayout callback changed');
+        (0, assert_1.default)(this.props.onItemSelected === nextProps.onItemSelected, 'onItemSelected callback changed');
+        (0, assert_1.default)(this.props.onItemFocused === nextProps.onItemFocused, 'onItemFocused callback changed');
+        (0, assert_1.default)(this.props.onAnimateStartStop === nextProps.onAnimateStartStop, 'onAnimateStartStop callback changed');
+        (0, assert_1.default)(this.props.renderItem === nextProps.renderItem, 'renderItem callback changed');
         // We assume this prop doesn't change for perf reasons. Callers should modify
         // the key to force an unmount/remount if these need to change.
-        assert_1.default(this.props.isScreenReaderModeEnabled === nextProps.isScreenReaderModeEnabled);
+        (0, assert_1.default)(this.props.isScreenReaderModeEnabled === nextProps.isScreenReaderModeEnabled);
         this.setItemKey(nextProps.itemKey);
         if (this.props.itemKey !== nextProps.itemKey) {
             this.setVisibility(nextProps.isVisible);
@@ -226,7 +226,7 @@ var VirtualListCell = /** @class */ (function (_super) {
     // the render completely, to improve performance.
     // eslint-disable-next-line @typescript-eslint/member-naming
     VirtualListCell.StaticRenderer = /** @class */ (function (_super) {
-        tslib_1.__extends(class_1, _super);
+        (0, tslib_1.__extends)(class_1, _super);
         function class_1(props) {
             return _super.call(this, props) || this;
         }
