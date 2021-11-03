@@ -16,15 +16,15 @@
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-native": "0.66.1",
-    "react-native-windows": "0.66.1",
+    "react-native-windows": "0.66.3",
     "reactxp": "github:alariej/reactxp"
   },
   "devDependencies": {
     "@types/lodash": "4.14.176",
-    "@types/react-dom": "17.0.10",
-    "@types/react-native": "0.65.9",
-    "@typescript-eslint/eslint-plugin": "5.1.0",
-    "eslint": "8.0.1",
+    "@types/react-dom": "17.0.11",
+    "@types/react-native": "0.66.2",
+    "@typescript-eslint/eslint-plugin": "5.3.0",
+    "eslint": "8.1.0",
     "eslint-plugin-import": "2.25.2",
     "typescript": "4.4.4"
   },
