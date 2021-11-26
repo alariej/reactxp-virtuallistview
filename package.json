@@ -15,18 +15,18 @@
   "peerDependencies": {
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "react-native": "0.66.2",
+    "react-native": "0.66.3",
     "react-native-windows": "0.66.3",
     "reactxp": "github:alariej/reactxp"
   },
   "devDependencies": {
-    "@types/lodash": "4.14.176",
+    "@types/lodash": "4.14.177",
     "@types/react-dom": "17.0.11",
-    "@types/react-native": "0.66.2",
-    "@typescript-eslint/eslint-plugin": "5.3.0",
-    "eslint": "8.1.0",
-    "eslint-plugin-import": "2.25.2",
-    "typescript": "4.4.4"
+    "@types/react-native": "0.66.6",
+    "@typescript-eslint/eslint-plugin": "5.4.0",
+    "eslint": "8.3.0",
+    "eslint-plugin-import": "2.25.3",
+    "typescript": "4.5.2"
   },
   "homepage": "https://microsoft.github.io/reactxp/docs/extensions/virtuallistview.html",
   "repository": {
