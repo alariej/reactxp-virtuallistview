@@ -77,7 +77,7 @@ var _accessibilityVirtualKeyPrefix = 'ac_';
 var _keyCodeUpArrow = _isWeb ? 38 : 19;
 var _keyCodeDownArrow = _isWeb ? 40 : 20;
 var VirtualListView = /** @class */ (function (_super) {
-    (0, tslib_1.__extends)(VirtualListView, _super);
+    tslib_1.__extends(VirtualListView, _super);
     function VirtualListView(props) {
         var _this = _super.call(this, props) || this;
         _this._lastScrollTop = 0;

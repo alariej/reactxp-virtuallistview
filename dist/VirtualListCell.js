@@ -29,7 +29,7 @@ var _keyCodeEnter = 13;
 var _keyCodeSpace = 32;
 var _keyCodeReturn = 3;
 var VirtualListCell = /** @class */ (function (_super) {
-    (0, tslib_1.__extends)(VirtualListCell, _super);
+    tslib_1.__extends(VirtualListCell, _super);
     function VirtualListCell(props) {
         var _this = _super.call(this, props) || this;
         _this._isVisible = false;
@@ -226,7 +226,7 @@ var VirtualListCell = /** @class */ (function (_super) {
     // the render completely, to improve performance.
     // eslint-disable-next-line @typescript-eslint/member-naming
     VirtualListCell.StaticRenderer = /** @class */ (function (_super) {
-        (0, tslib_1.__extends)(class_1, _super);
+        tslib_1.__extends(class_1, _super);
         function class_1(props) {
             return _super.call(this, props) || this;
         }
