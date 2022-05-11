@@ -1337,7 +1337,7 @@ export class VirtualListView<ItemInfo extends VirtualListViewItemInfo>
     }
 
     private _scrollToItemIndex(index: number): void {
-        this.scrollToTop(false, this._calcHeightOfItems(this.props, 0, index - 1) - (this.props.keyboardFocusScrollOffset || 0));
+        this.scrollToTop(true, this._calcHeightOfItems(this.props, 0, index - 1) - (this.props.keyboardFocusScrollOffset || 0));
     }
 
     // Returns true if successfully found/focused, false if not found/focused

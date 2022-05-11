@@ -1002,7 +1002,7 @@ var VirtualListView = /** @class */ (function (_super) {
         }
     };
     VirtualListView.prototype._scrollToItemIndex = function (index) {
-        this.scrollToTop(false, this._calcHeightOfItems(this.props, 0, index - 1) - (this.props.keyboardFocusScrollOffset || 0));
+        this.scrollToTop(true, this._calcHeightOfItems(this.props, 0, index - 1) - (this.props.keyboardFocusScrollOffset || 0));
     };
     // Returns true if successfully found/focused, false if not found/focused
     VirtualListView.prototype._focusSubsequentItem = function (direction, viaKeyboard, retry) {
